@@ -113,8 +113,8 @@ export default function Sidebar() {
         {/* Footer Socials & Auth */}
         <div className="p-6 border-t border-white/5 space-y-6 shrink-0">
           <div className={`flex items-center gap-6 ${!isOpen && 'flex-col'}`}>
-            <a href="https://www.linkedin.com/in/mehdi-mansouri-/" className="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest">LinkedIn</a>
-            <a  href="https://mhdmansouri.com/" className="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest">WEB</a>
+            <a href="https://www.linkedin.com/in/saoshyant-mansouri/" rel="me noopener noreferrer" target="_blank" className="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest">LinkedIn</a>
+            <a href="https://www.mhdmansouri.com/" rel="author" className="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest">WEB</a>
           </div>
           <button onClick={handleLogout} className={`flex items-center gap-3 text-gray-500 hover:text-pin-red transition-colors cursor-pointer ${!isOpen && 'justify-center'}`}>
             <span className="text-lg">⏻</span>
