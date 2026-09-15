@@ -33,3 +33,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GENETIC_VISUALIZATION }}'
           channelId: live
           projectId: genetic-visualization
+      # Tell IndexNow (Bing, Yandex, Seznam, Naver, Yep) the live site changed.
+      # The key is public by design; a failure here never fails the deploy.
+      - name: Submit to IndexNow
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
+        env:
+          SITE_URL: https://genetic-visualization.web.app
+          INDEXNOW_KEY: aa8de7e34d289e84c39f73292c4f326f
