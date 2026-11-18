@@ -1,9 +1,8 @@
 import * as d3 from "d3";
 import { motion } from "framer-motion";
-import { supabase } from "../lib/supabase";
 import { useEffect, useRef } from "react";
 
-export default function Login() {
+export default function Login({ onGuestLogin }: { onGuestLogin: () => void }) {
   const d3Container = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -88,14 +87,6 @@ export default function Login() {
   }, []);
 
 
-  const handleGuestLogin = async () => await supabase.auth.signInAnonymously();
-  const handleGoogleLogin = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin },
-    });
-  };
-
   return (
     <div className="relative h-screen w-full flex items-center justify-center bg-pin-charcoal overflow-hidden font-sans">
       <svg ref={d3Container} className="absolute inset-0 w-full h-full pointer-events-none" />
@@ -111,18 +102,10 @@ export default function Login() {
 
         <div className="space-y-4">
           <button
-            onClick={handleGoogleLogin}
-            className="w-full bg-white text-pin-charcoal py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-gray-100 transition-all active:scale-95 cursor-pointer shadow-xl shadow-black/20"
+            onClick={onGuestLogin}
+            className="w-full bg-white text-pin-charcoal py-4 rounded-2xl font-bold hover:bg-gray-100 shadow-xl shadow-black/20 transition-all cursor-pointer"
           >
-            <img src="https://www.google.com/favicon.ico" className="w-4 h-4" alt="Google" />
-            <span className="text-sm">Sign in with Google</span>
-          </button>
-
-          <button
-            onClick={handleGuestLogin}
-            className="w-full bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-bold hover:bg-white/10 transition-all cursor-pointer"
-          >
-            <span className="text-sm opacity-70">Access Demo</span>
+            <span className="text-sm">Continue as Guest</span>
           </button>
         </div>
       </motion.div>

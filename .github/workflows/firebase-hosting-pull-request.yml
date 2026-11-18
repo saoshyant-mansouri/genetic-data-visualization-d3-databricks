@@ -17,9 +17,6 @@ jobs:
       # Bypassing npm test here as well
       - name: Build React App
         run: npm run build
-        env:
-          VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY }}
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

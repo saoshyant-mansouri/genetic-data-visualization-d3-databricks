@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { supabase } from '../lib/supabase';
 import { fetchPatientCase, fetchPatientIndex } from '../features/genomics/genomicsSlice';
 import type { RootState, AppDispatch } from '../app/store';
 import { motion, AnimatePresence } from 'framer-motion';
 import CaseUploadModal from './CaseUploadModal';
 
-export default function Sidebar() {
+export default function Sidebar({ onLogout }: { onLogout: () => void }) {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 1024);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(''); // FIX: Added search state back
@@ -17,7 +16,7 @@ export default function Sidebar() {
     dispatch(fetchPatientIndex());
   }, [dispatch]);
 
-  const handleLogout = () => supabase.auth.signOut();
+  const handleLogout = onLogout;
 
   // FIX: Filter logic applied to the index
   const filteredPatients = patientIndex?.filter(p => 
